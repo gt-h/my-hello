@@ -7,12 +7,12 @@ pipeline{
                 cleanWs()
             }
         }
-        stage ('fetch') {
+        stage ('Fetch repo') {
             steps {
                 sh 'git clone https://github.com/gt-h/my-hello.git'
             }
         }
-        stage ('install') {
+        stage ('Build the app with help of docker') {
             steps {
                 dir("my-hello") {
                     sh 'docker run --rm --name my-hello -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven mvn clean package'
